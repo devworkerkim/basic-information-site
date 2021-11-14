@@ -1,0 +1,14 @@
+{
+  "name": "basic-informational-site",
+  "version": "1.0.0",
+  "description": "This is the repo for the Basic Informational Site project in the NodeJS course of The Odin Project.  The objective was to build a NodeJS server with some pages to be served given the URL.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

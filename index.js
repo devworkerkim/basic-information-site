@@ -1,33 +1,19 @@
-const http = require('http');
-const fs = require('fs');
+const express = require('express');
+const app = express();
+const path = require('path');
+const port = process.env.PORT || 8080;
 
-const server = http.createServer((req, res) => {
-    let path = './';
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/index.html'));
+});
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, '/about.html'));
+});
+app.get('/contact-me', (req, res) => {
+    res.sendFile(path.join(__dirname, '/contact-me.html'));
+});
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/404.html'));
+});
 
-    switch (req.url) {
-        case '/':
-            path += 'index.html';
-            break;
-        case '/about':
-            path += 'about.html';
-            break;
-        case '/contact-me':
-            path += 'contact-me.html';
-            break;
-        default:
-            path += '404.html';
-            break;
-    }
-
-    res.setHeader('Content-Type', 'text/html');
-
-    fs.readFile(path, (err, data) => {
-        if (err) {
-            console.error(err);
-            res.end();
-        }
-        else res.end(data);
-    });
-})
-
-server.listen(8080, () => console.log('listening on port ' + port));
+app.listen(port, () => {console.log('listening on port ' + port)})
